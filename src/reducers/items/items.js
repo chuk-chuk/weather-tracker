@@ -2,7 +2,7 @@ import { ITEMS_FETCH_DATA_SUCCESS } from '../../const';
 
 // reducer 
 
-export default (state = {}, action) => {
+export default (state = [], action) => {
     switch (action.type) {
         case ITEMS_FETCH_DATA_SUCCESS:
             return action.payload;

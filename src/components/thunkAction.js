@@ -6,7 +6,7 @@ export const fetchItems = (url) => {
     return (dispatch) => {
         dispatch(itemsAreLoading(true));
 
-        fetch()
+        fetch(url)
         .then((response) => {
             if (!response.ok) {
                 throw Error (response.statusText);
