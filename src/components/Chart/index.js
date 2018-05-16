@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Line } from 'react-chartjs-2';
 import { fetchItems } from '../../reducers/thunk/thunkAction';
-import moment from 'moment';
 import './styles.css';
 import BarGraph from '../BarGraph';
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-
 
 class Chart extends Component {
 
@@ -26,14 +23,7 @@ class Chart extends Component {
 
       return (
         <div>
-          <ul>
-              {this.props.items.map((item) => (
-                  <li key={item.dt}>
-                      {moment(item.dt_txt).format('dddd HH:mm')} Temperature {Math.round(item.main.temp)}
-                  </li>
-              ))}
-          </ul>
-          <BarGraph />
+          <BarGraph weatherData={this.props.items}/>
       </div>
     );
   }

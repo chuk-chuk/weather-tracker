@@ -10,7 +10,7 @@ export default class Display extends Component {
     return (
         <div className="display">
         <SearchBar />
-        <Chart legendPosition='bottom'/>
+        <Chart />
         <Gmaps />
       </div>
     );

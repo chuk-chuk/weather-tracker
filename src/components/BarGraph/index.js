@@ -1,14 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Line } from 'react-chartjs-2';
+import moment from 'moment';
 
 const BarGraph = (props) => {
+  console.log(props);
+  const rangeOfDays = props.weatherData.map((item) => moment(item.dt_txt).format('dddd HH:mm'));
+  const temperature = props.weatherData.map((item) => Math.round(item.main.temp));
+
 
   const chartData = {
-    labels: ['Monday','Tuesday','Wednesday','Thursday','Friday'],
+    labels: rangeOfDays,
     datasets: [
       {
         label: 'weather variations during 5 days',
-        data: [21,16,14,18,15, 0],
+        data: temperature,
         pointHitRadius: 20,
         pointRadius: 2,
         lineTension: 0.4,
@@ -16,12 +21,6 @@ const BarGraph = (props) => {
         borderColor: 'rgba(75, 192, 192, 1)'
       }
     ]
-  };
-
-  static defaultProps = {
-    displayTitle: true,
-    displayLegend: true,
-    legendPosition: 'right'
   };
 
   return (
@@ -57,3 +56,5 @@ const BarGraph = (props) => {
     />
   )
 }
+
+export default BarGraph;
