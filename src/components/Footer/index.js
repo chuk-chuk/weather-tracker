@@ -15,10 +15,9 @@ export default class Footer extends Component {
     render() {
         return (
             <footer className="footer">
-                <p>&copy; {today.getFullYear()} currencytracker.com. All rights reserved. 
-                {this.state.isJune2018Already ? ' Currency after June 2018' : ' Currency before June 2018'}.</p>
+                <p>&copy; {today.getFullYear()} globalweatherdata.com. All rights reserved.
+                {this.state.isJune2018Already ? ' Data after June 2018' : ' Data before June 2018'}.</p>
             </footer>
         );
     }
 }
-

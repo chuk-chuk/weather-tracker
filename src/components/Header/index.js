@@ -8,7 +8,7 @@ configure({ adapter: new Adapter() });
 const Header = () => {
     return (
         <header className="header">
-            <h1 className="title">Currency Tracker</h1>
+            <h1 className="title">Global Weather Search</h1>
         </header>
     );
 };

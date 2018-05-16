@@ -17,9 +17,9 @@ describe('<Footer />', () => {
     it('Should render correct string depending of if it\'s on 2018 already or not', () => {
         const wrapper = shallow(<Footer />);
         wrapper.setState({ isDecember2017Already: false });
-        expect(wrapper.find('.footer').text()).toContain('Currency before 2018');
+        expect(wrapper.find('.footer').text()).toContain('Data before June 2018');
         wrapper.setState({ isDecember2017Already: true });
-        expect(wrapper.find('.footer').text()).toContain('Currency after 2018');
+        expect(wrapper.find('.footer').text()).toContain('Data after June 2018');
     });
 
 });
