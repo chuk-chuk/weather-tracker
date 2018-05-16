@@ -1,8 +1,7 @@
 import { ITEMS_FETCH_DATA_SUCCESS } from '../../const';
 
-// reducer 
-
-export default (state = [], action) => {
+// reducer
+export default (state = {}, action) => {
     switch (action.type) {
         case ITEMS_FETCH_DATA_SUCCESS:
             return action.payload;
@@ -12,10 +11,9 @@ export default (state = [], action) => {
 }
 
 // Action creators
-
-export const itemsFetchDataSuccess = items => {
+export const itemsFetchDataSuccess = results => {
     return {
-        type: 'ITEMS_FETCH_DATA_SUCCESS',
-        payload: items
+        type: ITEMS_FETCH_DATA_SUCCESS,
+        payload: results
     }
 }
