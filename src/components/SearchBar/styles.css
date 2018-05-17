@@ -1,0 +1,38 @@
+.SearchBar__search {
+  padding: 10px;
+}
+
+.SearchBar__input {
+  background: transparent;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  padding-left: 50px;
+  background-image: url("../../assets/search-icon.png");
+  color: #d66565;
+  height: 48px;
+  width: 50%;
+  font-size: 20px;
+  outline: none;
+  border: 1px solid #f7f7f7;
+  border-radius: 4px;
+  background-position: center;
+  background-position-x: 10px;
+}
+
+.SearchBar__input::placeholder {
+    color: grey;
+}
+
+.SearchBar__button {
+  background-color: #d66565;
+  color: #f3f7f6;
+  border: none;
+  border-radius: 5px;
+  padding: 14px 30px;
+  margin-left: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  text-transform: uppercase;
+}
