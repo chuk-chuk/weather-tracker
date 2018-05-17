@@ -3,44 +3,41 @@ import { connect } from 'react-redux';
 import { fetchItems } from '../../reducers/thunk/thunkAction';
 import './styles.css';
 import BarGraph from '../BarGraph';
-const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
 class Chart extends Component {
 
-  componentDidMount() {
-      this.props.fetchItems(`http://api.openweathermap.org/data/2.5/forecast?q=London&units=metric&appid=${API_KEY}`);
-  }
+  componentDidMount() {this.props.fetchItems('London')}
 
-  render(){
-      if (this.props.hasErrored) {
-          return <p>Sorry! There was an error loading the items</p>;
-      }
-      if(this.props.isLoading) {
-          return <p>Loading…</p>;
-      }
-      console.log('payload', this.props);
-      console.log(this.state);
+  render() {
+    if (this.props.hasErrored) {
+        return <p>Sorry! There was an error loading the items</p>
+    }
+    if(this.props.isLoading) {
+        return <p>Loading data, please be patient…</p>
+    }
+    console.log('payload', this.props)
 
-      return (
-        <div>
-          <BarGraph weatherData={this.props.items}/>
+    return (
+      <div>
+        <BarGraph weatherData={this.props.items}/>
       </div>
-    );
+    )
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
         items: state.results.list || [],
+        coordinates: state.results.city || {},
         hasErrored: state.itemsHasErrored,
         isLoading: state.itemsAreLoading
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return {
-        fetchItems: (url) => dispatch(fetchItems(url))
+        fetchItems: location => dispatch(fetchItems(location))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Chart);
+export default connect(mapStateToProps, mapDispatchToProps)(Chart)
