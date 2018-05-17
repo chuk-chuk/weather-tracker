@@ -1,38 +1,46 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchItems } from '../../reducers/thunk/thunkAction';
-import searchBarResult from '../../reducers/query/query';
+import { searchBarQuery } from '../../reducers/query/query';
 import './styles.css';
 
 class SearchBar extends Component {
 
-  handleInputChange = (input) => {
-    this.props.searchBarResult(input)
+  onSearchChange = e => {
+    this.props.searchBarQuery(e.target.value)
   }
-  
+
+  handleSubmit = e => {
+    e.preventDefault()
+    this.props.fetchItems(this.props.searchText)
+    e.target.reset()
+  }
+
   render() {
-    console.log('Ss', this.state);
-      return (
-        <form>
-          <input  placeholder='Search for...'
-            ref={input => this.search = input}
-            onChange={this.handleInputChange}
-          />
-        </form>
-      );
+    console.log('PROPS SEARCHBAR', this.props)
+    return (
+      <form onSubmit={this.handleSubmit} className='SearchBar__search'>
+        <input type='search'
+          className='SearchBar__input'
+          placeholder='Search for...'
+          onChange={this.onSearchChange} />
+        <button type='submit' className='SearchBar__button'>Show</button>
+      </form>
+    )
   }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        query: state.query
-    }
+const mapStateToProps = state => {
+  return {
+    searchText: state.location || {}
+  }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        fetchItems: (url) => dispatch(fetchItems(url))
-    }
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchItems: location => dispatch(fetchItems(location)),
+    searchBarQuery: location => dispatch(searchBarQuery(location))
+  }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)

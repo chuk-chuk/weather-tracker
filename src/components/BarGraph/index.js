@@ -3,7 +3,7 @@ import { Line } from 'react-chartjs-2';
 import moment from 'moment';
 
 const BarGraph = (props) => {
-  console.log('barGraph props', props);
+  console.log('PROPS barGraph', props);
   const rangeOfDays = props.weatherData.map((item) => moment(item.dt_txt).format('dddd HH:mm'));
   const temperature = props.weatherData.map((item) => Math.round(item.main.temp));
 
@@ -31,7 +31,7 @@ const BarGraph = (props) => {
       options={{
         title: {
           display: true,
-          text: 'Weather forecast for the last 5 days in London',
+          text: 'Weather forecast for the last 5 days in London', // TODO: replace city with dynamic data
           fontSize: 25
         },
         layout: {
@@ -52,9 +52,8 @@ const BarGraph = (props) => {
         }],
         yAxes: [{
         ticks: {
-            max: 30,
+            max: 45,
             stepValue: 5,
-            steps: 10,
             beginAtZero: true
           }
         }]
@@ -75,4 +74,4 @@ const BarGraph = (props) => {
   )
 }
 
-export default BarGraph;
+export default BarGraph
