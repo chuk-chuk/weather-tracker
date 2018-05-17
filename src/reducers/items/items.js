@@ -4,16 +4,16 @@ import { ITEMS_FETCH_DATA_SUCCESS } from '../../const';
 export default (state = {}, action) => {
     switch (action.type) {
         case ITEMS_FETCH_DATA_SUCCESS:
-            return action.payload;
+            return action.payload
         default:
-            return state;
+            return state
     }
 }
 
 // Action creators
-export const itemsFetchDataSuccess = results => {
+export const itemsFetchDataSuccess = payload => {
     return {
         type: ITEMS_FETCH_DATA_SUCCESS,
-        payload: results
+        payload
     }
 }
