@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchItems } from '../../reducers/thunk/thunkAction';
 import { searchBarQuery } from '../../reducers/query/query';
@@ -32,7 +33,7 @@ class SearchBar extends Component {
 
 const mapStateToProps = state => {
   return {
-    searchText: state.location || {}
+    searchText: state.location || ''
   }
 }
 
@@ -42,5 +43,10 @@ const mapDispatchToProps = dispatch => {
     searchBarQuery: location => dispatch(searchBarQuery(location))
   }
 }
+
+SearchBar.propTypes = {
+    searchText: PropTypes.string.isRequired,
+    dispatch: PropTypes.func
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)

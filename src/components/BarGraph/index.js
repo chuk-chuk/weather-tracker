@@ -1,18 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Line } from 'react-chartjs-2';
 import moment from 'moment';
 
 const BarGraph = (props) => {
   console.log('PROPS barGraph', props);
-  const rangeOfDays = props.weatherData.map((item) => moment(item.dt_txt).format('dddd HH:mm'));
-  const temperature = props.weatherData.map((item) => Math.round(item.main.temp));
+  const { weatherData, location } = props;
 
+  const rangeOfDays = weatherData.map((item) => moment(item.dt_txt).format('dddd HH:mm'));
+  const temperature = weatherData.map((item) => Math.round(item.main.temp));
 
   const chartData = {
     labels: rangeOfDays,
     datasets: [
       {
-        label: 'weather variations during 5 days',
+        label: `Temperature in ${location.charAt(0).toUpperCase() + location.substr(1)}`,
         data: temperature,
         pointHitRadius: 20,
         pointRadius: 2,
@@ -31,7 +34,7 @@ const BarGraph = (props) => {
       options={{
         title: {
           display: true,
-          text: 'Weather forecast for the last 5 days in London', // TODO: replace city with dynamic data
+          text: `Weather variations during 5 days in ${location.charAt(0).toUpperCase() + location.substr(1)}`,
           fontSize: 25
         },
         layout: {
@@ -47,7 +50,7 @@ const BarGraph = (props) => {
             display: true,
             scaleLabel: {
                 display: true,
-                labelString: 'labels'
+                labelString: 'Displayed'
             }
         }],
         yAxes: [{
@@ -58,12 +61,9 @@ const BarGraph = (props) => {
           }
         }]
         },
-        hover: {
-          mode: 'label'
-        },
         showAllTooltips: true,
         legend: {
-          display: true,
+          display: false,
           position: 'bottom',
           labels: {
             fontColor: 'green'
@@ -74,4 +74,16 @@ const BarGraph = (props) => {
   )
 }
 
-export default BarGraph
+const mapStateToProps = state => {
+  return {
+    location: state.location || 'London'
+  }
+}
+
+BarGraph.propTypes = {
+    location: PropTypes.string.isRequired,
+    weatherData: PropTypes.array,
+    dispatch: PropTypes.func.isRequired
+};
+
+export default connect(mapStateToProps, null)(BarGraph)
