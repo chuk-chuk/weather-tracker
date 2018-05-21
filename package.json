@@ -27,6 +27,7 @@
     "fetch-mock": "^6.3.0",
     "file-loader": "1.1.5",
     "fs-extra": "3.0.1",
+    "google-map-react": "^1.0.3",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
     "moment": "^2.22.1",
