@@ -5,9 +5,7 @@ import { Line } from 'react-chartjs-2';
 import moment from 'moment';
 
 const BarGraph = (props) => {
-  console.log('PROPS barGraph', props);
   const { weatherData, location } = props;
-
   const rangeOfDays = weatherData.map((item) => moment(item.dt_txt).format('dddd HH:mm'));
   const temperature = weatherData.map((item) => Math.round(item.main.temp));
 
@@ -15,7 +13,7 @@ const BarGraph = (props) => {
     labels: rangeOfDays,
     datasets: [
       {
-        label: `Temperature in ${location.charAt(0).toUpperCase() + location.substr(1)}`,
+        label: `Temperature in ${location}`,
         data: temperature,
         pointHitRadius: 20,
         pointRadius: 2,
@@ -34,7 +32,7 @@ const BarGraph = (props) => {
       options={{
         title: {
           display: true,
-          text: `Weather variations during 5 days in ${location.charAt(0).toUpperCase() + location.substr(1)}`,
+          text: `Weather variations during 5 days in ${location}`,
           fontSize: 25
         },
         layout: {
@@ -75,15 +73,15 @@ const BarGraph = (props) => {
 }
 
 const mapStateToProps = state => {
+  const { city } = state.results;
   return {
-    location: state.location || 'London'
+    location: city.name
   }
 }
 
 BarGraph.propTypes = {
     location: PropTypes.string.isRequired,
-    weatherData: PropTypes.array,
-    dispatch: PropTypes.func.isRequired
+    weatherData: PropTypes.array
 };
 
 export default connect(mapStateToProps, null)(BarGraph)
