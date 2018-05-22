@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-import './styles.css';
 import Header from '../Header';
 import Footer from '../Footer';
-import Display from '../Display';
+import Chart from '../Chart';
+import SearchBar from '../SearchBar';
+import Gmaps from '../Gmaps';
+import './styles.css';
 
 class Application extends Component {
   render() {
     return (
       <div className="app">
         <Header />
-        <Display />
+        <SearchBar />
+        <Chart />
+        <Gmaps />
         <Footer />
       </div>
     );

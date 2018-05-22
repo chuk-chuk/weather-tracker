@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchItems } from '../../reducers/thunk/thunkAction';
-import './styles.css';
 import BarGraph from '../BarGraph';
+import './styles.css';
 
 class Chart extends Component {
 
@@ -15,7 +15,6 @@ class Chart extends Component {
     if(this.props.isLoading) {
         return <p>Loading data, please be patient…</p>
     }
-    console.log('payload', this.props)
 
     return (
       <div>
@@ -28,7 +27,6 @@ class Chart extends Component {
 const mapStateToProps = state => {
     return {
         items: state.results.list || [],
-        coordinates: state.results.city || {},
         hasErrored: state.itemsHasErrored,
         isLoading: state.itemsAreLoading
     }

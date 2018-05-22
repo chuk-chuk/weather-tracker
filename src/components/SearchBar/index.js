@@ -12,13 +12,12 @@ class SearchBar extends Component {
   }
 
   handleSubmit = e => {
-    e.preventDefault()
+    e.preventDefault();
     this.props.fetchItems(this.props.searchText)
     e.target.reset()
   }
 
   render() {
-    console.log('PROPS SEARCHBAR', this.props)
     return (
       <form onSubmit={this.handleSubmit} className='SearchBar__search'>
         <input type='search'
