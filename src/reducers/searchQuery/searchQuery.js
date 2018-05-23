@@ -11,7 +11,7 @@ export default (state = '', action) => {
 }
 
 // Action creators
-export const searchBarQuery = searchText => {
+export const searchQuery = searchText => {
   return {
     type: QUERY_SEARCH,
     searchText

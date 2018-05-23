@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Line } from 'react-chartjs-2';
 import moment from 'moment';
 
-const BarGraph = (props) => {
+const BarGraph = props => {
   const { weatherData, location } = props;
   const rangeOfDays = weatherData.map((item) => moment(item.dt_txt).format('dddd HH:mm'));
   const temperature = weatherData.map((item) => Math.round(item.main.temp));
@@ -47,15 +47,15 @@ const BarGraph = (props) => {
           xAxes: [{
             display: true,
             scaleLabel: {
-                display: true,
-                labelString: 'Displayed'
+              display: true,
+              labelString: 'Displayed'
             }
         }],
         yAxes: [{
         ticks: {
-            max: 45,
-            stepValue: 5,
-            beginAtZero: true
+          max: 45,
+          stepValue: 5,
+          beginAtZero: true
           }
         }]
         },
@@ -73,7 +73,7 @@ const BarGraph = (props) => {
 }
 
 const mapStateToProps = state => {
-  const { city } = state.results;
+  const { city } = state.apiData;
   return {
     location: city.name
   }

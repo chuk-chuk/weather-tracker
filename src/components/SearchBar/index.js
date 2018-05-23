@@ -2,22 +2,24 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchItems } from '../../reducers/thunk/thunkAction';
-import { searchBarQuery } from '../../reducers/query/query';
+import { searchQuery } from '../../reducers/searchQuery/searchQuery';
 import './styles.css';
 
 class SearchBar extends Component {
 
+  
   onSearchChange = e => {
-    this.props.searchBarQuery(e.target.value)
+    this.props.searchQuery(e.target.value)
   }
-
+  
   handleSubmit = e => {
-    e.preventDefault();
-    this.props.fetchItems(this.props.searchText)
+    e.preventDefault()
+    this.props.fetchItems(this.props.cityName)
     e.target.reset()
   }
-
+  
   render() {
+    console.log("search bar props", this.props);
     return (
       <form onSubmit={this.handleSubmit} className='SearchBar__search'>
         <input type='search'
@@ -32,19 +34,19 @@ class SearchBar extends Component {
 
 const mapStateToProps = state => {
   return {
-    searchText: state.location || ''
+    cityName: state.searchQuery || ''
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchItems: location => dispatch(fetchItems(location)),
-    searchBarQuery: location => dispatch(searchBarQuery(location))
+    fetchItems: city => dispatch(fetchItems(city)),
+    searchQuery: location => dispatch(searchQuery(location))
   }
 }
 
 SearchBar.propTypes = {
-    searchText: PropTypes.string.isRequired,
+    searchQuery: PropTypes.func.isRequired,
     dispatch: PropTypes.func
 };
 

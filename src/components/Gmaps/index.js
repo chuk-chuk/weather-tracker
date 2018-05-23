@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import GoogleMapReact from 'google-map-react';
+import { GOOGLE_ZOOM } from "../../const";
 import './styles.css';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 class Gmaps extends Component {
   static defaultProps = {
-    zoom: 8
+    zoom: GOOGLE_ZOOM
   }
 
   render() {
@@ -28,7 +29,7 @@ class Gmaps extends Component {
 }
 
 const mapStateToProps = state => {
-  const { city } = state.results
+  const { city } = state.apiData
   return {
     center: {
       lat: city.coord.lat,

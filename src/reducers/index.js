@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import results from './items/items';
-import location from './query/query';
+import apiData from './apiData/apiData';
+import searchQuery from './searchQuery/searchQuery';
 import itemsAreLoading from './loading/loading';
 import itemsHasErrored from './error/error';
 
 export default combineReducers({
-    results,
-    location,
+    apiData,
+    searchQuery,
     itemsAreLoading,
     itemsHasErrored
 });

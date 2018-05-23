@@ -1,8 +1,9 @@
-import { ITEMS_FETCH_DATA_SUCCESS } from '../../const';
+import { FETCH_DATA_SUCCESS } from '../../const';
+import { CITY } from '../../const';
 
 const initialState = {
   city: {
-    name: 'London',
+    name: CITY,
     coord: {
       lat: 51.51, lon: 0.13
     }
@@ -12,7 +13,7 @@ const initialState = {
 // reducer
 export default (state = initialState, action) => {
     switch (action.type) {
-        case ITEMS_FETCH_DATA_SUCCESS:
+        case FETCH_DATA_SUCCESS:
             return action.payload
         default:
             return state
@@ -20,9 +21,9 @@ export default (state = initialState, action) => {
 }
 
 // Action creators
-export const itemsFetchDataSuccess = payload => {
+export const fetchDataSuccess = payload => {
     return {
-        type: ITEMS_FETCH_DATA_SUCCESS,
+        type: FETCH_DATA_SUCCESS,
         payload
     }
 }

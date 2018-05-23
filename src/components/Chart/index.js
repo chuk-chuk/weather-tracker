@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchItems } from '../../reducers/thunk/thunkAction';
+import { CITY } from '../../const';
 import BarGraph from '../BarGraph';
 import './styles.css';
 
 class Chart extends Component {
 
-  componentDidMount() {this.props.fetchItems('London')}
+  componentDidMount() {this.props.fetchItems(CITY)}
 
   render() {
     if (this.props.hasErrored) {
@@ -18,7 +19,7 @@ class Chart extends Component {
 
     return (
       <div>
-        <BarGraph weatherData={this.props.items}/>
+        <BarGraph weatherData={this.props.apiData}/>
       </div>
     )
   }
@@ -26,7 +27,7 @@ class Chart extends Component {
 
 const mapStateToProps = state => {
     return {
-        items: state.results.list || [],
+        apiData: state.apiData.list || [],
         hasErrored: state.itemsHasErrored,
         isLoading: state.itemsAreLoading
     }
