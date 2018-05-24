@@ -4,12 +4,8 @@ import './styles.css';
 const today = new Date();
 
 export default class Footer extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            isJune2018Already: today.getTime() > (new Date(2018, 6, 1, 0, 0, 0, 0)).getTime(),
-        };
+    state = {
+            isJune2018Already: today.getTime() > (new Date(2018, 6, 1, 0, 0, 0, 0)).getTime()
     }
 
     render() {

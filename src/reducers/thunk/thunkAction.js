@@ -16,7 +16,7 @@ export const fetchItems = location => {
   }
 };
 
-const fetchData = url => {
+export const fetchData = url => {
   return fetch(url)
     .then((response) => {
       if (!response.ok) {

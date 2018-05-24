@@ -1,12 +1,12 @@
-import { itemsHasErrored } from './error';
+import { searchQuery } from './searchQuery';
 
-describe('error', () => {
+describe('searchQuery', () => {
     describe('action creators', () => {
-        describe('ITEMS_HAS_ERRORED', () => {
-            it('should create an action with  type of ITEMS_HAS_ERRORED and default value false', () => {
-                const action = itemsHasErrored(false);
-                expect(action.hasErrored).toEqual(false);
-                expect(action.type).toEqual('ITEMS_HAS_ERRORED');
+        describe('QUERY_SEARCH', () => {
+            it('should create an action with  type of QUERY_SEARCH', () => {
+                const action = searchQuery('text');
+                expect(action.searchText).toEqual('text');
+                expect(action.type).toEqual('QUERY_SEARCH');
             });
         });
     });
