@@ -12,7 +12,7 @@ export const fetchItems = location => {
         dispatch(itemsAreLoading(false));
         dispatch(fetchDataSuccess(data));
     })
-    .catch(() => dispatch(itemsHasErrored(true)))
+    .catch(() => dispatch(itemsHasErrored(true)));
   }
 };
 

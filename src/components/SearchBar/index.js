@@ -5,9 +5,8 @@ import { fetchItems } from '../../reducers/thunk/thunkAction';
 import { searchQuery } from '../../reducers/searchQuery/searchQuery';
 import './styles.css';
 
-class SearchBar extends Component {
+export class SearchBar extends Component {
 
-  
   onSearchChange = e => {
     this.props.searchQuery(e.target.value)
   }
@@ -19,7 +18,6 @@ class SearchBar extends Component {
   }
   
   render() {
-    console.log("search bar props", this.props);
     return (
       <form onSubmit={this.handleSubmit} className='SearchBar__search'>
         <input type='search'
