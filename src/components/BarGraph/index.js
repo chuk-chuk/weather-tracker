@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { Line } from 'react-chartjs-2';
 import moment from 'moment';
 
-const BarGraph = props => {
-  const { weatherData, location } = props;
+export const BarGraph = props => {
+  const { weatherData, city } = props;
   const rangeOfDays = weatherData.map((item) => moment(item.dt_txt).format('dddd HH:mm'));
   const temperature = weatherData.map((item) => Math.round(item.main.temp));
 
@@ -13,7 +13,7 @@ const BarGraph = props => {
     labels: rangeOfDays,
     datasets: [
       {
-        label: `Temperature in ${location}`,
+        label: `Temperature in ${city}`,
         data: temperature,
         pointHitRadius: 20,
         pointRadius: 2,
@@ -32,7 +32,7 @@ const BarGraph = props => {
       options={{
         title: {
           display: true,
-          text: `Weather variations during 5 days in ${location}`,
+          text: `Weather variations during 5 days in ${city}`,
           fontSize: 25
         },
         layout: {
@@ -72,16 +72,17 @@ const BarGraph = props => {
   )
 }
 
-const mapStateToProps = state => {
-  const { city } = state.apiData;
-  return {
-    location: city.name
-  }
-}
+// const mapStateToProps = state => {
+//   const { city } = state.apiData;
+//   return {
+//     location: city.name
+//   }
+// }
 
 BarGraph.propTypes = {
-    location: PropTypes.string.isRequired,
+    city: PropTypes.string,
     weatherData: PropTypes.array
 };
 
-export default connect(mapStateToProps, null)(BarGraph)
+// export default connect(null, null)(BarGraph)
+export default BarGraph;

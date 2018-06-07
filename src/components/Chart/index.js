@@ -5,7 +5,7 @@ import { CITY } from '../../const';
 import BarGraph from '../BarGraph';
 import './styles.css';
 
-class Chart extends Component {
+export class Chart extends Component {
 
   componentDidMount() {this.props.fetchItems(CITY)}
 
@@ -19,7 +19,7 @@ class Chart extends Component {
 
     return (
       <div>
-        <BarGraph weatherData={this.props.apiData}/>
+        <BarGraph weatherData={this.props.apiData} city={this.props.city}/>
       </div>
     )
   }
@@ -28,6 +28,7 @@ class Chart extends Component {
 const mapStateToProps = state => {
     return {
         apiData: state.apiData.list || [],
+        city: state.apiData.city.name || '',
         hasErrored: state.itemsHasErrored,
         isLoading: state.itemsAreLoading
     }
