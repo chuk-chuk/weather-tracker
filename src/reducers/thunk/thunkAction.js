@@ -6,6 +6,7 @@ const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
 export const fetchItems = location => {
   return (dispatch) => {
+    dispatch(itemsHasErrored(false));
     dispatch(itemsAreLoading(true));
     fetchData(`http://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=${API_KEY}`)
     .then((data) => {

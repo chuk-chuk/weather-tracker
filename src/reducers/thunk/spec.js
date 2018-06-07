@@ -3,6 +3,7 @@ import { fetchItems, fetchData } from './thunkAction';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk'
 import { itemsAreLoading } from '../loading/loading';
+import { itemsHasErrored } from '../error/error';
 import { fetchDataSuccess } from '../apiData/apiData';
 
 const mockStore = configureMockStore([thunk]);
@@ -44,11 +45,12 @@ describe('fetchItems', () => {
         const actions = store.getActions();
 
         setTimeout(() => {
-            console.log('Actions', actions)
-            expect(actions.length).toEqual(3);
-            expect(actions[0]).toEqual(itemsAreLoading(true));
-            expect(actions[1]).toEqual(itemsAreLoading(false));
-            expect(actions[2]).toEqual(fetchDataSuccess(testData));
+            expect(actions.length).toEqual(4);
+            console.log(actions)
+            expect(actions[0]).toEqual(itemsHasErrored(false));
+            expect(actions[1]).toEqual(itemsAreLoading(true));
+            expect(actions[2]).toEqual(itemsAreLoading(false));
+            expect(actions[3]).toEqual(fetchDataSuccess(testData));
             done();
         }, 0);        
 

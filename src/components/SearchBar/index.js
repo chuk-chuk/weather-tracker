@@ -10,13 +10,16 @@ export class SearchBar extends Component {
   onSearchChange = e => {
     this.props.searchQuery(e.target.value)
   }
-  
+
   handleSubmit = e => {
     e.preventDefault()
+    if (!this.props.cityName){
+      return;
+    }
     this.props.fetchItems(this.props.cityName)
     e.target.reset()
   }
-  
+
   render() {
     return (
       <form onSubmit={this.handleSubmit} className='SearchBar__search'>
