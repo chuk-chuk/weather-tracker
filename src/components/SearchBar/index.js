@@ -27,7 +27,7 @@ export class SearchBar extends Component {
           className='SearchBar__input'
           placeholder='Search for...'
           onChange={this.onSearchChange} />
-        <button type='submit' className='SearchBar__button'>Show</button>
+          <button type='submit' className='SearchBar__button'>Show</button>
       </form>
     )
   }

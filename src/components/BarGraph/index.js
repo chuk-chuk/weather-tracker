@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Line } from 'react-chartjs-2';
 import moment from 'moment';
 
@@ -72,17 +71,9 @@ export const BarGraph = props => {
   )
 }
 
-// const mapStateToProps = state => {
-//   const { city } = state.apiData;
-//   return {
-//     location: city.name
-//   }
-// }
-
 BarGraph.propTypes = {
     city: PropTypes.string,
     weatherData: PropTypes.array
 };
 
-// export default connect(null, null)(BarGraph)
 export default BarGraph;
