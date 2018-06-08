@@ -3,26 +3,28 @@ import { connect } from 'react-redux';
 import { fetchItems } from '../../reducers/thunk/thunkAction';
 import { CITY } from '../../const';
 import BarGraph from '../BarGraph';
+import LoadingSpinner from '../Loader';
 import './styles.css';
 
 export class Chart extends Component {
+   
+    componentDidMount() {this.props.fetchItems(CITY)}
 
-  componentDidMount() {this.props.fetchItems(CITY)}
+    render() {
 
-  render() {
-    if (this.props.hasErrored) {
-        return <p>Sorry! There was an error loading the items</p>
+        if (this.props.hasErrored) {
+            return <p>Sorry! There was an error loading the items</p>
+        }
+        if(this.props.isLoading) {
+            return <LoadingSpinner/>
+        }
+
+        return (
+        <div>
+            <BarGraph weatherData={this.props.apiData} city={this.props.city}/>
+        </div>
+        )
     }
-    if(this.props.isLoading) {
-        return <p>Loading data, please be patient…</p>
-    }
-
-    return (
-      <div>
-        <BarGraph weatherData={this.props.apiData} city={this.props.city}/>
-      </div>
-    )
-  }
 }
 
 const mapStateToProps = state => {
