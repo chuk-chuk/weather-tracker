@@ -10,6 +10,7 @@ export const fetchItems = location => {
     dispatch(itemsAreLoading(true));
     fetchData(`http://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=${API_KEY}`)
     .then((data) => {
+      console.log(data)
         dispatch(itemsAreLoading(false));
         dispatch(fetchDataSuccess(data));
     })
