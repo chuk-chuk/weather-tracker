@@ -1,0 +1,28 @@
+version: 3 
+services: 
+################################
+#   Setup postgres container
+################################
+
+################################
+#   Setup node container
+################################
+
+################################
+#   Setup frontend container
+################################
+  weather-tracker-app:
+    container-name: weather-tracker-app 
+    build:
+      context: .
+      dockerfile: Dockerfile 
+    expose:
+      - 4000
+      #bind the local port 4000 to the containers port 3000
+    ports: 
+      - 4000:3000
+    enviroment:
+      - NODE_ENV=development
+    volumes:
+      - '.:/usr/src/app'
+      - './usr/src/app/node_modules'
