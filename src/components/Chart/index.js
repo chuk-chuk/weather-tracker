@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchItems } from '../../reducers/thunk/thunkAction';
+import { ITEMS_STATE } from "../../reducers/error/error";
 import { CITY } from '../../const';
 import BarGraph from '../BarGraph';
 import LoadingSpinner from '../Loader';
@@ -11,10 +12,6 @@ export class Chart extends Component {
     componentDidMount() {this.props.fetchItems(CITY)}
 
     render() {
-
-        if (this.props.hasErrored) {
-            return <p>Sorry! There was an error loading the items</p>
-        }
         if(this.props.isLoading) {
             return <LoadingSpinner/>
         }
@@ -31,8 +28,7 @@ const mapStateToProps = state => {
     return {
         apiData: state.apiData.list || [],
         city: state.apiData.city.name || '',
-        hasErrored: state.itemsHasErrored,
-        isLoading: state.itemsAreLoading
+        isLoading: state.itemsState === ITEMS_STATE.loading
     }
 }
 

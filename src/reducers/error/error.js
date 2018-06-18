@@ -1,19 +1,25 @@
-import { ITEMS_HAS_ERRORED } from '../../const';
+import { CHANGE_ITEMS_STATE } from '../../const';
+
+export const ITEMS_STATE = {
+    initial: 'initial',
+    loading: 'loading',
+    error: 'error',
+    done: 'done',
+}
 
 // reducer 
-export default (state = false, action) => {
+export default (state = ITEMS_STATE.initial, action) => {
     switch (action.type) {
-        case ITEMS_HAS_ERRORED:
-            return action.hasErrored;
+        case CHANGE_ITEMS_STATE:
+            return action.payload;
         default:
             return state;
     }
 }
 
-// Action creators
-export const itemsHasErrored = bool => {
+export const changeItemsState = state => {
     return {
-        type: ITEMS_HAS_ERRORED,
-        hasErrored: bool
+        type: CHANGE_ITEMS_STATE,
+        payload: state
     };
 }

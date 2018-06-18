@@ -1,20 +1,19 @@
-import { itemsAreLoading } from "../loading/loading";
 import { fetchDataSuccess } from "../apiData/apiData";
-import { itemsHasErrored } from "../error/error";
+import { changeItemsState, ITEMS_STATE } from "../error/error";
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
 export const fetchItems = location => {
   return (dispatch) => {
-    dispatch(itemsHasErrored(false));
-    dispatch(itemsAreLoading(true));
+    
+    dispatch(changeItemsState(ITEMS_STATE.loading));
     fetchData(`http://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=${API_KEY}`)
     .then((data) => {
       console.log(data)
-        dispatch(itemsAreLoading(false));
+        dispatch(changeItemsState(ITEMS_STATE.done));
         dispatch(fetchDataSuccess(data));
     })
-    .catch(() => dispatch(itemsHasErrored(true)));
+    .catch(() => dispatch(changeItemsState(ITEMS_STATE.error)));
   }
 };
 
